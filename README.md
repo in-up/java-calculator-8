@@ -19,3 +19,4 @@
 
 - `feat(application): 입출력 구현`
 - `feat(calculator): 구분자 처리`
+- `feat(calculator): 커스텀 구분자 처리`
