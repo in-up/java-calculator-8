@@ -9,6 +9,9 @@ public class StringCalculator {
             return 0;
         }
 
+        // "\n"을 실제 개행으로 맞추기
+        input = input.replace("\\n", "\n");
+
         // 단일 숫자 처리
         if (input.matches("\\d+")) {
             return Integer.parseInt(input);
@@ -21,22 +24,18 @@ public class StringCalculator {
 
         // 커스텀 구분자 처리
         if (input.startsWith("//")) {
-            if (input.length() < 4) {
-                throw new IllegalArgumentException("커스텀 구분자는 1글자 이상일 수 없습니다: " + input);
-            }
-            String delim = String.valueOf(input.charAt(2));
-
-            int idx = input.indexOf('\n', 3);
-            int jump = 1;
-            if (idx < 0) {
-                idx = input.indexOf("\\n", 3);
-                jump = 2;
-            }
-            if (idx < 0) {
+            int newlineIdx = input.indexOf('\n');
+            if (newlineIdx < 0) {
                 throw new IllegalArgumentException("커스텀 구분자 뒤에는 개행이 필요합니다: " + input);
             }
 
-            String numbers = input.substring(idx + jump);
+            // 한 글자 이상의 커스텀 구분자 허용
+            String delim = input.substring(2, newlineIdx);
+            if (delim.isEmpty()) {
+                throw new IllegalArgumentException("커스텀 구분자는 한 글자 이상이어야 합니다: " + input);
+            }
+
+            String numbers = input.substring(newlineIdx + 1);
             return sumTokens(numbers.split(java.util.regex.Pattern.quote(delim)));
         }
 
