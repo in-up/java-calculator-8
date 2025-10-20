@@ -1,7 +1,7 @@
 # java-calculator-precourse
 
 ## 구현 예정 기능
-- [ ] 입출력 구현
+- [x] 입출력 구현
     - "덧셈할 문자열을 입력해 주세요."라는 문구를 출력하여 사용자 입력을 받는다.
     - `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 사용하여 입력을 받는다.
     - 계산 결과를 `"결과 : "` 형식으로 출력한다.
@@ -17,4 +17,4 @@
 
 ## 구현을 완료한 기능 및 커밋 메시지
 
-- (없음)
+- `feat(application): 입출력 구현`
