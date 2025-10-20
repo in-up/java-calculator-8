@@ -52,7 +52,10 @@ class ApplicationTest extends NsTest {
     class UnitTests {
 
         @ParameterizedTest
-        @CsvSource(value = {"//;\n1;2;3#6", "//*\n1*2*3#6"}, delimiter = '#')
+        @CsvSource(value = {
+                "//;\\n1;2;3#6",
+                "//*\\n1*2*3#6"
+        }, delimiter = '#')
         @DisplayName("커스텀 구분자로 분리된 숫자의 합을 반환한다.")
         void customDelimiter_returnSum(String input, int expected) {
             assertThat(StringCalculator.add(input)).isEqualTo(expected);
