@@ -22,7 +22,7 @@ public class StringCalculator {
         // 커스텀 구분자 처리
         if (input.startsWith("//")) {
             if (input.length() < 4) {
-                throw new IllegalArgumentException("잘못된 커스텀 구분자 형식: " + input);
+                throw new IllegalArgumentException("커스텀 구분자는 1글자 이상일 수 없습니다: " + input);
             }
             String delim = String.valueOf(input.charAt(2));
 
@@ -40,9 +40,7 @@ public class StringCalculator {
             return sumTokens(numbers.split(java.util.regex.Pattern.quote(delim)));
         }
 
-        // TODO: 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException 처리
-
-        throw new IllegalArgumentException("Illegal Argument Exception: " + input);
+        throw new IllegalArgumentException("처리 가능한 조건의 문자열에 해당하지 않습니다: " + input);
     }
 
     private static boolean containsDefaultDelimiter(String s) {
@@ -52,8 +50,21 @@ public class StringCalculator {
     private static int sumTokens(String[] tokens) {
         int sum = 0;
         for (String token : tokens) {
-            // TODO: 예외 정책
-            sum += Integer.parseInt(token);
+            // 빈 토큰인 경우
+            if (token == null || token.isBlank()) {
+                throw new IllegalArgumentException("빈 토큰은 허용되지 않습니다: (빈 토큰)");
+            }
+            // 양수 또는 0이 아닌 경우
+            if (!token.matches("\\d+")) {
+                throw new IllegalArgumentException("숫자가 아닌 값이 포함되어 있습니다: " + token);
+            }
+
+            int v = Integer.parseInt(token);
+            // 음수인 경우
+            if (v < 0) {
+                throw new IllegalArgumentException("음수는 허용되지 않습니다: " + v);
+            }
+            sum += v;
         }
         return sum;
     }
