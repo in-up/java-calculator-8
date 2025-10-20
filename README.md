@@ -12,7 +12,8 @@
     - //와 \n 사이의 문자를 커스텀 구분자로 사용하여 숫자를 분리하고 합을 반환한다. `(예: //;\n1;2;3 -> 6)`
 - [x] 예외 처리
     - 입력 문자열에 숫자 이외의 값이나 음수가 포함된 경우 IllegalArgumentException 발생시킨다.
-
+- [x] 테스트 추가
+    - ApplicationTest.java를 수정하여 입출력 케이스에 대해 테스트를 시행한다.
 
 
 ## 구현을 완료한 기능 및 커밋 메시지
@@ -21,3 +22,4 @@
 - `feat(calculator): 구분자 처리`
 - `feat(calculator): 커스텀 구분자 처리`
 - `feat(calculator): 예외 처리`
+- `test(calculator): 테스트 추가`
